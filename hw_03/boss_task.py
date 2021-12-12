@@ -1,18 +1,25 @@
 
-print('''\nThere is a riddle as they say "from Steve Jobs." 
+print('''
+There is a riddle as they say "from Steve Jobs." 
 There are 2 buckets, one 3 liters, the other 5 liters and unlimited water. 
 	
 You can:
 1. Collect water in any bucket. command: 'fill_up'
 2. Pour water out of any bucket. command: 'discharge'
-3. Transfer water from one bucket to another. 'transfuse'
+3. Transfer water from one bucket to another: 'transfuse'
+4. To exit the program, enter "exit
+5. Select the volume of the bucket with the command: 'bucket_3' or 'bucket_5'
 
 Example command for input:
+
+Enter action, enter bucket:
 >>> transfuse, bucket_3
+
 What does this command mean? Transfer the water from a three-liter 
 bucket to another bucket
 
-The user wins if he manages to get exactly 4 liters.''')
+You win if he manages to get exactly 4 liters.
+''')
 
 buck_3 = 0
 buck_5 = 0
@@ -32,7 +39,7 @@ while True:
 				'bucket_5': 'bucket_5',
 				}
 
-	user_input=input('Enter action, enter bucket:\n')
+	user_input = input('Enter action, enter bucket:\n')
 	if user_input == 'exit':
 		break
 	user_input = user_input.split(', ')
@@ -74,7 +81,6 @@ while True:
 	counter += 1
 	print(f"Current result: Bucket 3L:{buck_3}, Bucket 5L:{buck_5}. \n\
 		This is {counter} step.")
-	# print(f"This is {counter} step")
 
 	if buck_5 == 4:
 		print("You win!!!")
