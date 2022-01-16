@@ -1,0 +1,9 @@
+{
+    "sender": "serg",
+    "recipient": "ihar",
+    "amount": 150,
+    "prev_block": {
+        "hash": "a6576da996f1f13783f790e0a10b7e62",
+        "filename": "2"
+    }
+}

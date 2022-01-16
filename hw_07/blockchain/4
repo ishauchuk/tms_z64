@@ -1,0 +1,9 @@
+{
+    "sender": "oleg",
+    "recipient": "misha",
+    "amount": 425,
+    "prev_block": {
+        "hash": "ebd12787b85cd73d64d3fb45ab8cf1a2",
+        "filename": "3"
+    }
+}
