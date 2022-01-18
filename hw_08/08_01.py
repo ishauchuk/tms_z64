@@ -62,8 +62,11 @@ class Room:
             new_square -= i.square
         return new_square
 
-    def wallpapers(self, w_w, w_l):
-        w_square = w_l * w_w
+    def square_wallpapers(self, w_w, w_l):
+        square_wallpapers = w_l * w_w
+        return square_wallpapers
+
+    def wallpapers(self, w_square):
         num_tub = self.worksurface() / w_square
         return math.ceil(num_tub)
 
@@ -93,11 +96,12 @@ while True:
             "Enter the length of the wallpaper roll:\n"))
         wallpapers_w = float(input(
             "Enter the width of the wallpaper roll:\n"))
+        wallpapers_square = room_1.square_wallpapers(wallpapers_l, wallpapers_w)
         print(
             "Square glued surface is",
             room_1.worksurface(),
             "square meters.",
             "Number of required wallpaper rolls needed is",
-            room_1.wallpapers(wallpapers_l, wallpapers_w),
+            room_1.wallpapers(wallpapers_square),
             ".\n"
         )
