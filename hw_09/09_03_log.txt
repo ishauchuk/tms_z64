@@ -1,0 +1,12 @@
+Filename: .\09_03.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+     6     20.1 MiB     20.1 MiB           1   @check_RAM(stream=log)
+     7                                         def my_func():
+     8     27.7 MiB      7.6 MiB           1       a = [1] * (10 ** 6)
+     9    180.3 MiB    152.6 MiB           1       b = [2] * (2 * 10 ** 7)
+    10     27.7 MiB   -152.6 MiB           1       del b
+    11     27.7 MiB      0.0 MiB           1       return a
+
+
