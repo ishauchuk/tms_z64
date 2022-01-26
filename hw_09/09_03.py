@@ -1,7 +1,6 @@
 """
 Make a decorator that calculates the RAM consumption for a script.
 """
-
 from memory_profiler import profile as check_RAM
 
 log = open("09_03_log.txt", "w+")
