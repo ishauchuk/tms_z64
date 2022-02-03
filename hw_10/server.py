@@ -44,47 +44,59 @@ class Room:
         return math.ceil(num_tub)
 
 
-port = int(sys.argv[1]) if len(sys.argv) >= 2 else 8800
-sock = socket.socket()
-sock.bind(('127.0.0.1', port))
-sock.listen(1)
-
-
 def curr_time():
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     return current_time
 
 
+def created_room():
+    room_param = {'width': 0, 'length': 0, 'height': 0}
+    for elem in room_param.keys():
+        room_param[elem] = float(conn.recv(1024).decode("utf-8"))
+    return room_param.values()
+
+
+def created_area(*args, **kwargs):
+    for areas in range(*args, **kwargs):
+        o_width = float(conn.recv(1024).decode("utf-8"))
+        o_height = float(conn.recv(1024).decode("utf-8"))
+        o_name = conn.recv(1024).decode("utf-8")
+        obj_add(o_width, o_height, o_name)
+
+
+def wp_square():
+    wallpapers_param = {'width': 0, 'length': 0}
+    for elem in wallpapers_param.keys():
+        wallpapers_param[elem] = float(conn.recv(1024).decode("utf-8"))
+    wallpapers_square = room_1.square_wallpapers(
+        wallpapers_param['width'],
+        wallpapers_param['length'], )
+    return wallpapers_square
+
+
+port = int(sys.argv[1]) if len(sys.argv) >= 2 else 8800
+sock = socket.socket()
+sock.bind(('127.0.0.1', port))
+sock.listen(1)
 print(f"Server started at {curr_time()}.")
 conn, addr = sock.accept()
 
 if __name__ == "__main__":
     try:
         while True:
-
             def obj_add(*args, **kwargs):
-                return room_1.add_wd(o_width, o_height, o_name)
+                return room_1.add_wd(*args, **kwargs)
 
 
-            width = float(conn.recv(1024).decode("utf-8"))
-            length = float(conn.recv(1024).decode("utf-8"))
-            height = float(conn.recv(1024).decode("utf-8"))
-            room_1 = Room(width, length, height)
+            room_1 = Room(*created_room())
+
             choice_2 = int(conn.recv(1024).decode("utf-8"))
-            for areas in range(choice_2):
-                o_width = float(conn.recv(1024).decode("utf-8"))
-                o_height = float(conn.recv(1024).decode("utf-8"))
-                o_name = conn.recv(1024).decode("utf-8")
-                obj_add(o_width, o_height, o_name)
-            wallpapers_l = float(conn.recv(1024).decode("utf-8"))
-            wallpapers_w = float(conn.recv(1024).decode("utf-8"))
-            wallpapers_square = room_1.square_wallpapers(wallpapers_l,
-                                                         wallpapers_w)
+            created_area(choice_2)
 
             room_ws = room_1.worksurface()
             conn.send((str(room_ws)).encode("utf-8"))
-            square_wp = room_1.wallpapers(wallpapers_square)
+            square_wp = room_1.wallpapers(wp_square())
             conn.send((str(square_wp)).encode("utf-8"))
 
     except ValueError:
