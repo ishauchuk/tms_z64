@@ -2,6 +2,7 @@
 /.idea
 **/__pycache__
 hw_12/**/settings.py
+hw_13/**/settings.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
