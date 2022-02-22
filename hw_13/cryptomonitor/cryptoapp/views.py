@@ -1,9 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 import requests
 import json
-from pycoingecko import CoinGeckoAPI
-
-cg = CoinGeckoAPI()
 
 
 def wrapper(request, url):
